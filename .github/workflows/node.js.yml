@@ -18,5 +18,5 @@ jobs:
           username: ec2-user
           key: ${{ secrets.WORKFLOW_SECRET }}
           port: 22
-          script: sh ../run.sh
+          script: sh ../../run.sh
 
