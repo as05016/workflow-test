@@ -11,9 +11,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      if: ${GITHUB_REF} == "refs/heads/main"
-        - name: Execute ssh commands
+      - name: Execute ssh commands
+        if: "${GITHUB_REF}" = "refs/heads/main"
         uses: appleboy/ssh-action@master
         with:
           host: 3.108.217.47
@@ -27,8 +26,6 @@ jobs:
             git pull
             npm install
             pm2 start app1.json
-      else:
-        - name: "Checkout secondary branch"
-          run: checkout
+
         
 
