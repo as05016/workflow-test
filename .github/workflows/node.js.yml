@@ -16,7 +16,7 @@ jobs:
         with:
           host: ec2-13-127-6-4.ap-south-1.compute.amazonaws.com
           username: ec2-user
-          key: ${{ secrets.EC2_KEY }}
+          key: ${{ secrets.WORKFLOW_SECRET }}
           port: 22
           script: sh ../run.sh
 
