@@ -9,8 +9,8 @@ on:
 
 jobs:
   build:
-    if: github.ref == 'refs/heads/main'
-      runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
+      if: github.ref == 'refs/heads/main'
       steps:
         - name: Execute ssh commands
           uses: appleboy/ssh-action@master
@@ -26,8 +26,7 @@ jobs:
               git pull
               npm install
               pm2 start app1.json
-    if: github.ref == 'refs/heads/secondary'
-      runs-on: ubuntu-latest
+      if: github.ref == 'refs/heads/secondary'
       steps:
         - name: Execute ssh commands
           uses: appleboy/ssh-action@master
