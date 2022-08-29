@@ -1,0 +1,8 @@
+{
+  "apps": [
+    {
+      "name": "app2",
+      "script": "PORT=3001 npm start"
+    }
+  ]
+}

@@ -5,7 +5,7 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "secondary" ]
 
 jobs:
   build:
@@ -14,11 +14,19 @@ jobs:
       - name: Execute ssh commands
         uses: appleboy/ssh-action@master
         with:
-          host: 15.207.18.45
+          host: 3.108.217.47
           username: ec2-user
           key: ${{ secrets.WORKFLOW_SECRET }}
           port: 22
           timeout: 10m
+          if: branch === "main"
+          script: | #!/bin/bash
+            cd test/workflow-test/
+            git fetch
+            git pull
+            npm install
+            pm2 start
+          else:
           script: | #!/bin/bash
             cd test/workflow-test/
             git fetch
