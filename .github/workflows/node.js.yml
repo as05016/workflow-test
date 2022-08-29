@@ -10,37 +10,26 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-      if: github.ref == 'refs/heads/main'
-        steps:
-          - name: Execute ssh commands
-            uses: appleboy/ssh-action@master
-            with:
-              host: 3.108.217.47
-              username: ec2-user
-              key: ${{ secrets.WORKFLOW_SECRET }}
-              port: 22
-              timeout: 10m
-              script: | #!/bin/bash
-                cd test/workflow-test/
-                git fetch
-                git pull
-                npm install
-                pm2 start app1.json
-      if: github.ref == 'refs/heads/secondary'
-      steps:
+    steps:
+      # Write a if condition for main and secondary branch
+      - uses: actions/checkout@v2
+      if: ${GITHUB_REF} == "refs/heads/main"
         - name: Execute ssh commands
-          uses: appleboy/ssh-action@master
-          with:
-            host: 3.108.217.47
-            username: ec2-user
-            key: ${{ secrets.WORKFLOW_SECRET }}
-            port: 22
-            timeout: 10m
-            script: | #!/bin/bash
-              cd test/workflow-test/
-              git fetch
-              git pull
-              npm install
-              pm2 start app2.json
+        uses: appleboy/ssh-action@master
+        with:
+          host: 3.108.217.47
+          username: ec2-user
+          key: ${{ secrets.WORKFLOW_SECRET }}
+          port: 22
+          timeout: 10m
+          script: | #!/bin/bash
+            cd test/workflow-test/
+            git fetch
+            git pull
+            npm install
+            pm2 start app1.json
+      else:
+        - name: "Checkout secondary branch"
+          run: checkout
         
 
