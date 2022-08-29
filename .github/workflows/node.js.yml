@@ -19,5 +19,5 @@ jobs:
           key: ${{ secrets.WORKFLOW_SECRET }}
           port: 22
           timeout: 10m
-          script: sh ../../run.sh
+          script: | ls
 
