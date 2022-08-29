@@ -8,11 +8,11 @@ on:
     branches: [ "main", "secondary" ]
 
 jobs:
-  build: {
-  if: {{#if .PullRequest}}
+  build: 
     runs-on: ubuntu-latest
     steps:
       - name: Execute ssh commands
+        if: github.refs == 'refs/head/main'
         uses: appleboy/ssh-action@master
         with:
           host: 3.108.217.47
@@ -25,8 +25,26 @@ jobs:
             git fetch
             git pull
             npm install
-            pm2 start app1.json
-  }
+            pm2 start app1.json    
+            
+      - name: Execute ssh commands
+        if: github.refs == 'refs/head/secondary'
+        uses: appleboy/ssh-action@master
+        with:
+          host: 3.108.217.47
+          username: ec2-user
+          key: ${{ secrets.WORKFLOW_SECRET }}
+          port: 22
+          timeout: 10m
+          script: | #!/bin/bash
+            cd test/workflow-test/
+            git fetch
+            git pull
+            npm install
+            pm2 start app2.json    
+            
+        
+  
 
         
 
