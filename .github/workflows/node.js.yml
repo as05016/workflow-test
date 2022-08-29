@@ -8,7 +8,7 @@ on:
     branches: [ "main", "secondary" ]
 
 jobs:
-  build:
+  build: {
   if: {{#if .PullRequest}}
     runs-on: ubuntu-latest
     steps:
@@ -26,6 +26,7 @@ jobs:
             git pull
             npm install
             pm2 start app1.json
+  }
 
         
 
