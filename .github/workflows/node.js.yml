@@ -11,21 +11,21 @@ jobs:
   build:
     runs-on: ubuntu-latest
       if: github.ref == 'refs/heads/main'
-      steps:
-        - name: Execute ssh commands
-          uses: appleboy/ssh-action@master
-          with:
-            host: 3.108.217.47
-            username: ec2-user
-            key: ${{ secrets.WORKFLOW_SECRET }}
-            port: 22
-            timeout: 10m
-            script: | #!/bin/bash
-              cd test/workflow-test/
-              git fetch
-              git pull
-              npm install
-              pm2 start app1.json
+        steps:
+          - name: Execute ssh commands
+            uses: appleboy/ssh-action@master
+            with:
+              host: 3.108.217.47
+              username: ec2-user
+              key: ${{ secrets.WORKFLOW_SECRET }}
+              port: 22
+              timeout: 10m
+              script: | #!/bin/bash
+                cd test/workflow-test/
+                git fetch
+                git pull
+                npm install
+                pm2 start app1.json
       if: github.ref == 'refs/heads/secondary'
       steps:
         - name: Execute ssh commands
