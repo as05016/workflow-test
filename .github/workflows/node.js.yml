@@ -11,8 +11,8 @@ jobs:
   build: 
     runs-on: ubuntu-latest
     steps:
-      - name: Execute ssh commands
-        if: github.refs == 'refs/head/main'
+      - name: Execute ssh commands (main)
+        if: github.ref == 'refs/heads/main'
         uses: appleboy/ssh-action@master
         with:
           host: 3.108.217.47
@@ -27,8 +27,8 @@ jobs:
             npm install
             pm2 start app1.json    
             
-      - name: Execute ssh commands
-        if: github.refs == 'refs/head/secondary'
+      - name: Execute ssh commands (secondary)
+        if: github.ref == 'refs/heads/secondary'
         uses: appleboy/ssh-action@master
         with:
           host: 3.108.217.47
