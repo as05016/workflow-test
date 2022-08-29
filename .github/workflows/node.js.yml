@@ -21,7 +21,9 @@ jobs:
           timeout: 10m
           script: | #!/bin/bash
             cd workflow-test/
+            git fetch
+            git pull
             npm install
-            node app.js 
+            pm2 start
         
 
