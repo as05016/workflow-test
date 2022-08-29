@@ -10,6 +10,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: "${GITHUB_REF}" = "refs/heads/main"
     steps:
       - name: Execute ssh commands
         uses: appleboy/ssh-action@master
