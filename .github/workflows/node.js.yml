@@ -12,7 +12,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Execute ssh commands
-        if: "${GITHUB_REF}" = "refs/heads/main"
         uses: appleboy/ssh-action@master
         with:
           host: 3.108.217.47
