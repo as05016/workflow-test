@@ -7,7 +7,6 @@ app.get("/", (req, res) => {
   res.send("Hello World Main v3!");
 });
 
-
 app.listen(PORT, (error) => {
   if (!error)
     console.log(
@@ -15,5 +14,3 @@ app.listen(PORT, (error) => {
     );
   else console.log("Error occurred, server can't start", error);
 });
-
-
