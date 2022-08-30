@@ -25,7 +25,7 @@ jobs:
             git fetch
             git pull
             npm install
-            pm2 start app1.json    
+            pm2 restart app1.json    
             
       - name: Execute ssh commands (secondary)
         if: github.ref == 'refs/heads/secondary'
@@ -41,7 +41,7 @@ jobs:
             git fetch
             git pull
             npm install
-            pm2 start app2.json    
+            pm2 restart app2.json    
             
         
   
