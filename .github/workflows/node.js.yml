@@ -15,34 +15,23 @@ jobs:
         if: github.ref == 'refs/heads/main'
         uses: appleboy/ssh-action@master
         with:
-          host: 52.66.253.220
+          host: 3.110.189.140
           username: ec2-user
           key: ${{ secrets.WORKFLOW_SECRET }}
           port: 22
           timeout: 10m
-          script: | #!/bin/bash
-            cd test/workflow-test/
-            git fetch
-            git pull
-            npm install
-            pm2 restart app1.json    
+          script: sh run_app1.sh   
             
       - name: Execute ssh commands (secondary)
         if: github.ref == 'refs/heads/secondary'
         uses: appleboy/ssh-action@master
         with:
-          host: 52.66.253.220
+          host: 3.110.189.140
           username: ec2-user
           key: ${{ secrets.WORKFLOW_SECRET }}
           port: 22
           timeout: 10m
-          script: | #!/bin/bash
-            cd test/workflow-test/
-            git fetch
-            git checkout secondary
-            git pull
-            npm install
-            pm2 restart app2.json    
+          script: sh run_app2.sh  
             
         
   
