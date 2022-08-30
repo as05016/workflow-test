@@ -20,7 +20,9 @@ jobs:
           key: ${{ secrets.WORKFLOW_SECRET }}
           port: 22
           timeout: 10m
-          script: sh run_app1.sh   
+          script: | #!/bin/bash
+                cd test/workflow-test/
+                sh run_app1.sh 
             
       - name: Execute ssh commands (secondary)
         if: github.ref == 'refs/heads/secondary'
@@ -31,7 +33,9 @@ jobs:
           key: ${{ secrets.WORKFLOW_SECRET }}
           port: 22
           timeout: 10m
-          script: sh run_app2.sh  
+          script: | #!/bin/bash
+                cd test/workflow-test/
+                sh run_app2.sh  
             
         
   

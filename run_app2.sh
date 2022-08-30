@@ -1,5 +1,3 @@
-#!/bin/bash
-cd test/workflow-test/
 git fetch
 git checkout secondary
 git pull
