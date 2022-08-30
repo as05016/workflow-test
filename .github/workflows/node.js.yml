@@ -31,7 +31,7 @@ jobs:
         if: github.ref == 'refs/heads/secondary'
         uses: appleboy/ssh-action@master
         with:
-          host: 3.108.217.47
+          host: 52.66.253.220
           username: ec2-user
           key: ${{ secrets.WORKFLOW_SECRET }}
           port: 22
@@ -39,6 +39,7 @@ jobs:
           script: | #!/bin/bash
             cd test/workflow-test/
             git fetch
+            git checkout secondary
             git pull
             npm install
             pm2 restart app2.json    
